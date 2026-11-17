@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RegHospital;
 using RegHospital.Objects;
+using RegHospitalDesctop.Views;
 using RegHospitalDesctop.Windows;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,11 @@ namespace RegHospitalDesctop.Pages
 
             tablePatient.ItemsSource = patients;
 
+
+
+            var P_Item = db.Patients.Select(x => x.Gender).Distinct().ToList();
+            P_Item.Insert(0, "Все" );
+            FilterPatient.ItemsSource = P_Item;
 
         }
 
@@ -79,5 +85,45 @@ namespace RegHospitalDesctop.Pages
 
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            patients = new ObservableCollection<Patient>(patients.OrderBy(c => c.FullName));
+            tablePatient.ItemsSource = patients;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            patients = new ObservableCollection<Patient>(patients.OrderByDescending(c =>  c.FullName));
+            tablePatient.ItemsSource= patients;
+        }
+        private void FilterPatient_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(FilterPatient.SelectedValue == "Все")
+            {
+                patients = db.Patients.Local.ToObservableCollection();
+                tablePatient.ItemsSource = patients;
+                return;
+            }
+
+
+            var p = db.Patients.Where(x => x.Gender == FilterPatient.SelectedValue).ToList();
+
+            patients = new ObservableCollection<Patient>(p);
+
+            tablePatient.ItemsSource = patients;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var s = txtSearch.Text;
+
+            var pt = db.Patients.Local.Where(x => x.FullName.Contains(s));
+
+            patients = new ObservableCollection<Patient>(pt);
+
+            tablePatient.ItemsSource = patients;
+        }
+      
     }
 }

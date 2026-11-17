@@ -49,5 +49,10 @@ namespace RegHospitalDesctop
         {
             MainFrame.Navigate(new RoomPage());
         }
+
+        private void App_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AppointmentPage());
+        }
     }
 }

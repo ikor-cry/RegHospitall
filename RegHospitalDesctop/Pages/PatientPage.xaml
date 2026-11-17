@@ -9,6 +9,17 @@
       Title="PatientPage">
 
     <StackPanel>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" >
+            <Button Content="Сортровать ⬆️" Click="Button_Click_1" Margin="20" />
+            <Button Content="Сортровать ⬇️" Click="Button_Click_2" Margin="20" />
+            <ComboBox x:Name="FilterPatient" 
+                     
+                      Width="130" 
+                      
+                      SelectionChanged="FilterPatient_SelectionChanged"/>
+            <TextBox TextChanged="TextBox_TextChanged" Name="txtSearch" Margin="10" Width="120"/>
+            
+        </StackPanel>
         <TextBlock Text="Пациенты" FontSize="20"/>
         <DataGrid x:Name="tablePatient" SelectionChanged="Patientlist" Height="300"/>
         <StackPanel x:Name="StackPanel">

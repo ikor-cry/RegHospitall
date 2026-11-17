@@ -62,6 +62,7 @@
             <Button Content="Сохранить изменения" Click="Button_Click"/>
             <Button Content="Добавить кабинет" Click="ButtonAddRoom"/>
             <Button Content="Удалить" Click="Del_Click"/>
+            
         </StackPanel>
     </StackPanel>
 </Page>

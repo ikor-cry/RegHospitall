@@ -23,7 +23,7 @@
             <Button Content="Доктора" Click="Doctor_Click" Margin="5"/>
             <Button Content="Пациент" Click="Patient_Click" Margin="5"/>
             <Button Content="Комнаты" Click="Room_Click" Margin="5"/>
-
+            <Button Content="Приём" Click="App_Click" Margin="5"/>
 
         </StackPanel>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="Beige" />
